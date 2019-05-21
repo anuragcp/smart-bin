@@ -1,0 +1,9 @@
+ban
+card
+glass
+lay
+metal
+paper
+pens
+plastics
+trash

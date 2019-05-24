@@ -16,7 +16,7 @@ stream.seek(0)
 img = Image.open(stream)
 
 graph = load_graph(model_file)
-  t = read_tensor_from_image_file(file_name = img,
+t = read_tensor_from_image_file(file_name = img,
                                   input_height=input_height,
                                   input_width=input_width,
                                   input_mean=input_mean,

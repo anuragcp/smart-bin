@@ -28,8 +28,7 @@ output_operation = graph.get_operation_by_name(output_name);
 with tf.Session(graph=graph) as sess:
 	start = time.time()
 	results = sess.run(output_operation.outputs[0],{input_operation.outputs[0]: t})
-    end=time.time()
-
+	end=time.time()
 results = np.squeeze(results)
 top_k = results.argsort()[-5:][::-1]
 labels = load_labels(label_file)

@@ -29,11 +29,10 @@ with tf.Session(graph=graph) as sess:
 	start = time.time()
     results = sess.run(output_operation.outputs[0],{input_operation.outputs[0]: t})
     end=time.time()
-results = np.squeeze(results)
 
+results = np.squeeze(results)
 top_k = results.argsort()[-5:][::-1]
 labels = load_labels(label_file)
-
 print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
 template = "{} (score={:0.5f})"
 for i in top_k:

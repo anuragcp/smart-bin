@@ -51,11 +51,11 @@ def load_labels(label_file):
   for l in proto_as_ascii_lines:
     label.append(l.rstrip())
   return label
-"""
+
 if __name__ == "__main__":
   file_name = "tf_files/flower_photos/daisy/3475870145_685a19116d.jpg"
-  model_file = "tf_files/retrained_graph.pb"
-  label_file = "tf_files/retrained_labels.txt"
+  model_file = "model/retrained_graph.pb"
+  label_file = "model/retrained_labels.txt"
   input_height = 224
   input_width = 224
   input_mean = 128
@@ -120,4 +120,3 @@ if __name__ == "__main__":
   template = "{} (score={:0.5f})"
   for i in top_k:
     print(template.format(labels[i], results[i]))
-"""

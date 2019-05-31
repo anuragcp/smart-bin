@@ -1,22 +1,35 @@
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import time
-import label_image
-from picamera import PiCamera
+from label_image import *
+#from picamera import PiCamera
 from PIL import Image
+import numpy as np
 
 img = []
 model_file = "./model/retrained_graph.pb"
+file_name = "./image/test.jpg"
+label_file = "model/retrained_labels.txt"
+input_height = 224
+input_width = 224
+input_mean = 128
+input_std = 128
+input_layer = "input"
+output_layer = "final_result"
 #if utrasonic detects a object
-stream = BytesIO()
-camera = PiCamera()
-camera.start_preview()
-sleep(2)
-camera.capture(stream, format='jpeg')
-stream.seek(0)
-img = Image.open(stream)
+#stream = BytesIO()
+#camera = PiCamera()
+#camera.start_preview()
+#sleep(2)
+#camera.capture(stream, format='jpeg')
+#stream.seek(0)
+img = Image.open("./image/test.jpg")
+img = np.array(img)
+print("Image resized to {}".format(299,299))
 
 graph = load_graph(model_file)
-t = read_tensor_from_image_file(file_name = img,
+print("Model loaded...")
+print(img)
+t = read_tensor_from_image_file(file_name,
                                   input_height=input_height,
                                   input_width=input_width,
                                   input_mean=input_mean,

@@ -4,6 +4,8 @@ from label_image import *
 #from picamera import PiCamera
 from PIL import Image
 import numpy as np
+import cv2
+import time
 
 img = []
 model_file = "./model/retrained_graph.pb"
@@ -22,6 +24,20 @@ output_layer = "final_result"
 #sleep(2)
 #camera.capture(stream, format='jpeg')
 #stream.seek(0)
+
+cap = cv2.VideoCapture(1)
+
+#create a if function here for ultrasonic sensor readings
+ret, frame = cap.read()
+cv2.imshow('frame', frame)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+#saving image with time span
+cv2.imwrite('./temp/test.jpg',frame)
+cv2.imwrite('/image/{}.png'.format(time.ctime(time.time())),frame)
+
+
 img = Image.open("./image/test.jpg")
 img = np.array(img)
 print("Image resized to {}".format(299,299))
